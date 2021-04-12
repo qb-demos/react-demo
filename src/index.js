@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom'
 import './index.css'
 
 class TitleCom extends Component {
+  handleClick (e) {
+    console.log('Click on title.')
+    console.log(e.target.innerHTML)
+    console.log(this)
+  }
+
   render () {
     return (
-      <h1>这里是 title 组件</h1>
+      <h1 onClick={this.handleClick.bind(this)}>这里是 title 组件</h1>
     )
   }
 }
