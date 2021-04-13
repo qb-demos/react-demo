@@ -2,33 +2,34 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
-class LikeBtn extends Component {
-  static defaultProps = {
-    likedText: '取消',
-    unLikedText: '点赞'
+const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+class UserCom extends Component {
+  render () {
+    const { user } = this.props
+    return (
+      <div>
+        <div>姓名：{user.username}</div>
+        <div>年龄：{user.age}</div>
+        <div>性别：{user.gender}</div>
+      </div>
+    )
   }
+}
 
-  constructor() {
-    super()
-    this.state = { isLiked: false }
-  }
-
-  handleClick (e) {
-    this.setState({
-      isLiked: !this.state.isLiked
-    })
-  }
-
+class Wrap extends Component {
   render () {
     return (
-      <button onClick={this.handleClick.bind(this)}>
-        {this.state.isLiked ? this.props.likedText : this.props.unLikedText}
-      </button>
+      <div>{users.map((user, i) => <UserCom user={user} key={i}></UserCom>)}</div>
     )
   }
 }
 
 ReactDOM.render(
-  <LikeBtn />,
+  <Wrap />,
   document.getElementById('root')
 )
